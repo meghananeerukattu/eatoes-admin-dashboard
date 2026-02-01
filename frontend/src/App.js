@@ -68,8 +68,6 @@ function App() {
           </button>
         </div>
       </div>
-
-      {/* 🔹 MENU PAGE */}
       {page === "menu" && (
         <>
           <input
@@ -120,7 +118,7 @@ function App() {
         </>
       )}
 
-      {/* 🔹 ORDERS PAGE */}
+      
       {page === "orders" && <Orders />}
     </div>
   );
