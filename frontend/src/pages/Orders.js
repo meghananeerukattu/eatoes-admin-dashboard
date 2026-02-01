@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+const API_BASE_URL = "https://eatoes-admin-dashboard-2ldp.onrender.com";
+
 
 function Orders() {
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = () => {
-    fetch("http://localhost:5000/api/orders")
+    fetch("https://eatoes-admin-dashboard-2ldp.onrender.com/api/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.error(err));
@@ -16,7 +18,7 @@ function Orders() {
 
   const updateStatus = async (orderId, status) => {
     try {
-      await fetch(`http://localhost:5000/api/orders/${orderId}/status`, {
+      await fetch(`${API_BASE_URL}/api/orders/${orderId}/status`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

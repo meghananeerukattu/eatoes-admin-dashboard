@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import useDebounce from "./hooks/useDebounce";
 import Orders from "./pages/Orders";
+const API_BASE_URL = "https://eatoes-admin-dashboard-2ldp.onrender.com";
 
 function App() {
   const [page, setPage] = useState("menu");
@@ -11,9 +12,8 @@ function App() {
   const debouncedSearch = useDebounce(search, 300);
 
   const fetchMenu = () => {
-    const url = debouncedSearch
-      ? `http://localhost:5000/api/menu/search?q=${debouncedSearch}`
-      : "http://localhost:5000/api/menu";
+    const url = debouncedSearch? `${API_BASE_URL}/api/menu/search?q=${debouncedSearch}`: `${API_BASE_URL}/api/menu`;
+
 
     fetch(url)
       .then((res) => res.json())
@@ -37,10 +37,8 @@ function App() {
     );
 
     try {
-      await fetch(
-        `http://localhost:5000/api/menu/${id}/availability`,
-        { method: "PATCH" }
-      );
+      await fetch(`${API_BASE_URL}/api/menu/${id}/availability`,
+      { method: "PATCH" });
     } catch (error) {
       console.error(error);
       fetchMenu();
